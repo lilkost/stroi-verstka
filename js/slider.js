@@ -33,38 +33,18 @@ if (document.querySelector('.services-slider')) {
         loop: true,
         observer: true,
         observeParents: true,
-        effect: 'slide',
-        fadeEffect: {
-            crossFade: false
-        },
         breakpoints: {
             1281: {
                 slidesPerView: 1.561,
-                effect: 'slide',
-                fadeEffect: {
-                    crossFade: false
-                },
             },
             1280: {
-                effect: 'slide',
-                fadeEffect: {
-                    crossFade: false
-                },
                 slidesPerView: 1.3,
 
             },
             1101: {
-                effect: 'slide',
-                fadeEffect: {
-                    crossFade: false
-                },
                 slidesPerView: 1.3,
             },
             280: {
-                effect: 'fade',
-                fadeEffect: {
-                    crossFade: true
-                },
                 slidesPerView: 1,
             }
         },
@@ -73,6 +53,7 @@ if (document.querySelector('.services-slider')) {
             prevEl: '.services-slider__button-prev',
         },
     });
+    
 }
 
 if (document.querySelector('.project__tabs-slider')) {

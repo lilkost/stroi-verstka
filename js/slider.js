@@ -118,7 +118,7 @@ if (document.querySelector('.project__tabs-slider')) {
                 slidesPerView: 2,
             },
             280: {
-                slidesPerView: 1.5,
+                slidesPerView: 2,
             }
         },
     });

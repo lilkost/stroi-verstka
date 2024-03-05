@@ -58,7 +58,7 @@ if (document.querySelector('.blog-slider')) {
         // Optional parameters
         direction: 'horizontal',
         loop: false,
-
+        spaceBetween: 20,
         // If we need pagination
         pagination: {
             el: ".blog-slider__pagination",
@@ -118,7 +118,7 @@ if (document.querySelector('.project__tabs-slider')) {
                 slidesPerView: 2,
             },
             280: {
-                slidesPerView: 2,
+                slidesPerView: 1.5,
             }
         },
     });
@@ -183,11 +183,12 @@ if (document.querySelector('.project__tabs-slider')) {
             // Optional parameters
             direction: 'horizontal',
             loop: false,
+            spaceBetween: 20,
 
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            },
+            // effect: 'fade',
+            // fadeEffect: {
+            //     crossFade: true
+            // },
 
 
 

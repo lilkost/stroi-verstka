@@ -126,8 +126,14 @@ if (window.innerWidth > 992) {
 
     window.addEventListener('resize', () => {
         animate()
-    })
+    });
 }
+if(window.innerWidth > 992 && window.innerWidth <=1280) {
+    setTimeout(()=>{
+        console.log(document.querySelector('.top').parentElement.clientHeight, document.querySelector('.top').parentElement.style.marginBottom)
+    },100)
+}
+
 
 window.addEventListener('scroll', () => {
     let bodyHeight = document.querySelector('body').scrollHeight;
@@ -136,7 +142,7 @@ window.addEventListener('scroll', () => {
     const topBox = document.querySelector('.top__box');
 
     if (window.innerWidth >= 992) {
-        if (window.scrollY > 150) {
+        if (window.scrollY > 50) {
             topBox.style.opacity = 0;
         }
         else {

@@ -8,7 +8,7 @@ if (window.innerWidth > 992) {
                 scrollTrigger: {
                     trigger: container,
                     start: "top top",
-                    end: '+=150',
+                    end: () => (window.innerHeight),
                     scrub: true,
                     pin: container,
                 }
@@ -18,16 +18,14 @@ if (window.innerWidth > 992) {
                 {
                     width: widthDEfault,
                     height: 662,
-                    ease: Power3.easeOut,
                     duration: 1,
                 },
                 {
                     width: window.innerWidth,
-                    height: window.innerHeight + 60,
-                    ease: Power3.easeOut,
+                    height: window.innerHeight + 20,
                     duration: 1,
                     // onUpdate: () => {
-                    //     if(tl.progress() >= 0.85 && tl.progress() < 1){
+                    //     if(tl.progress() >= 0.9 && tl.progress() < 1){
                     //         const promise = document.querySelector('.top__video').play();
                     //         console.log(promise)
                     //         if(promise !== undefined){
@@ -120,7 +118,6 @@ if (window.innerWidth > 992) {
                 });
                 tli.to(gallery, {
                     x: `-${totalSlidesWidth - 500}`,
-                    duration: 1,
                 });
             }
         }, 100)
@@ -139,17 +136,11 @@ window.addEventListener('scroll', () => {
     const topBox = document.querySelector('.top__box');
 
     if (window.innerWidth >= 992) {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 150) {
             topBox.style.opacity = 0;
-            header.style.opacity = 0
-        }
-
-        else if (window.scrollY > 300) {
-            header.style.opacity = 1
         }
         else {
             topBox.style.opacity = 1;
-            header.style.opacity = 1
         }
     }
 

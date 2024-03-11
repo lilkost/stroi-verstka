@@ -63,7 +63,7 @@ if (window.innerWidth > 992) {
                     scrollTrigger: {
                         trigger: galleryWrapper,
                         start: '-=150',
-                        end: `+=${totalSlidesWidth -500}`,
+                        end: `+=${totalSlidesWidth}`,
                         pin: true,
                         scrub: 0.5,
                         onUpdate: () => {
@@ -123,11 +123,8 @@ if (window.innerWidth > 992) {
         }, 100)
     }
     animate()
-
-    window.addEventListener('resize', () => {
-        animate()
-    });
 }
+
 
 window.addEventListener('scroll', () => {
     let bodyHeight = document.querySelector('body').scrollHeight;
@@ -135,7 +132,7 @@ window.addEventListener('scroll', () => {
     let header = document.querySelector('.header');
     const topBox = document.querySelector('.top__box');
 
-    if (window.innerWidth > 992) {
+    if (window.innerWidth >= 992) {
         if (window.scrollY > 50) {
             topBox.style.opacity = 0;
         }

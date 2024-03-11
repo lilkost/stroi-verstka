@@ -202,3 +202,19 @@ if (document.querySelector('.project__tabs-slider')) {
 }
 
 
+if (document.querySelector('.project-page__slider')) {
+    const servicesSlider = document.querySelector('.project-page__slider');
+    const swiper = new Swiper(servicesSlider, {
+        // Optional parameters
+        slidesPerView: 1,
+        direction: 'horizontal',
+        spaceBetween: 20,
+        loop: true,
+
+        navigation: {
+            nextEl: '.project-page-slider__button-next',
+            prevEl: '.project-page-slider__button-prev',
+        },
+    });
+
+}

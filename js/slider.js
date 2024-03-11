@@ -24,14 +24,14 @@ if (document.querySelector('.services-slider')) {
     const servicesSlider = document.querySelector('.services-slider');
     const swiper = new Swiper(servicesSlider, {
         // Optional parameters
-        slidesPerView: 1.561,
         direction: 'horizontal',
         loop: true,
         observer: true,
         observeParents: true,
+        spaceBetween: 10,
         breakpoints: {
-            1281: {
-                slidesPerView: 1.561,
+            1441: {
+                slidesPerView: 1.54,
             },
             1280: {
                 slidesPerView: 1.3,
@@ -132,27 +132,44 @@ if (document.querySelector('.project__tabs-slider')) {
     let countNext = 0;
     let countPrev = 0;
     projectSliders.forEach((sliderId) => {
+        let sw = new Swiper(sliderId, {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: false,
+            spaceBetween: 20,
+            initialSlide: 0,
+    
+            // effect: 'fade',
+            // fadeEffect: {
+            //     crossFade: true
+            // },
+    
+            // Navigation arrows
+            navigation: {
+                nextEl: sliderId.querySelector('.project__tabs-button-next'),
+                prevEl: sliderId.querySelector('.project__tabs-button-prev'),
+            },
+        });
         // next
         sliderId.querySelector('.project__tabs-button-next').addEventListener('click', () => {
             const lastSlide = sliderId.querySelectorAll('.project__tabs-slide')[sliderId.querySelectorAll('.project__tabs-slide').length - 1];
-
             if (lastSlide.classList.contains('swiper-slide-active')) {
-                console.log(swiper2.activeIndex + 1, sliderWrapperLength)
-                swiper2.slideTo(swiper2.activeIndex + 1);
-                // if (swiper2.activeIndex + 1 !== sliderWrapperLength && countNext === 0) {
-                //     swiper2.slideTo(swiper2.activeIndex + 1);
-                // }
+                console.log(swiper2.activeIndex + 1, sliderWrapperLength, sliderId.querySelectorAll('.project__tabs-slide')[sliderId.querySelectorAll('.project__tabs-slide').length - 1].classList.contains('swiper-slide-active'))
+                
+                if (swiper2.activeIndex + 1 !== sliderWrapperLength && countNext === 0) {
+                    swiper2.slideTo(swiper2.activeIndex + 1);
+                }
 
-                // if (swiper2.activeIndex + 1 === sliderWrapperLength) {
-                //     countNext += 1;
-                // }
+                if (swiper2.activeIndex + 1 === sliderWrapperLength) {
+                    countNext += 1;
+                }
 
-                // if (swiper2.activeIndex + 1 === sliderWrapperLength && countNext === 2) {
-                //     swiper2.slideTo(0);
-                //     countPrev = 2;
-                //     countNext = 0;
-                //     console.log(true)
-                // }
+                if (swiper2.activeIndex + 1 === sliderWrapperLength && countNext === 2) {
+                    countPrev = 2;
+                    countNext = 0;
+                    swiper2.slideTo(0)
+                        console.log(sw)
+                }
             }
         })
         // prev
@@ -177,30 +194,8 @@ if (document.querySelector('.project__tabs-slider')) {
                 // }
             }
         });
-
-
-        const swiper = new Swiper(sliderId, {
-            // Optional parameters
-            direction: 'horizontal',
-            loop: false,
-            spaceBetween: 20,
-
-            // effect: 'fade',
-            // fadeEffect: {
-            //     crossFade: true
-            // },
-
-
-
-            // Navigation arrows
-            navigation: {
-                nextEl: sliderId.querySelector('.project__tabs-button-next'),
-                prevEl: sliderId.querySelector('.project__tabs-button-prev'),
-            },
-        });
     })
 }
-
 
 if (document.querySelector('.project-page__slider')) {
     const servicesSlider = document.querySelector('.project-page__slider');

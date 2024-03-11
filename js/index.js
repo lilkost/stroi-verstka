@@ -54,3 +54,18 @@ if(document.querySelector('.header-burger')) {
     })
 }
 
+const arrows = [
+    document.querySelector('.services-slider__button-prev'), 
+    document.querySelector('.services-slider__button-next'),
+    document.querySelector('.info-slider__button-prev'),
+    document.querySelector('.info-slider__button-next')
+]
+
+arrows.forEach(item=>{
+    item.addEventListener("click", function(){
+        document.body.style.cssText = '-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;'
+    });
+    item.addEventListener("mouseout", function(){
+        document.body.style.cssText = ''
+    });
+})

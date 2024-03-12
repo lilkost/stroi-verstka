@@ -1,70 +1,58 @@
 if (window.innerWidth > 992) {
-    // function animate() {
+    function animate() {
         setTimeout(() => {
             const container = document.querySelector('.top');
             const widthDEfault = (window.innerWidth - document.querySelector('.top__box').clientWidth) - (window.innerWidth - document.querySelector('.top__inner').clientWidth)
-            const videoTop = document.querySelector('.top__video');
-            videoTop.setAttribute('data-width', widthDEfault);
-            videoTop.style.width = widthDEfault + 'px';
-            window.addEventListener('scroll', ()=> {
-                if(window.scrollY > 50) {
-                    videoTop.style.width = window.innerWidth + 'px';
-                    videoTop.style.top = '200px'
-                }
-                else if(window.scrollY < 50){
-                    videoTop.style.width = widthDEfault + 'px';
-                    videoTop.style.top = '100px'
+
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: container,
+                    start: "top top",
+                    end: () => (window.innerHeight),
+                    scrub: true,
+                    pin: container,
                 }
             })
-            // let tl = gsap.timeline({
-            //     scrollTrigger: {
-            //         trigger: container,
-            //         start: "top top",
-            //         end: () => (window.innerHeight),
-            //         scrub: true,
-            //         pin: container,
-            //     }
-            // })
 
-            // tl.fromTo('.top__video ',
-            //     {
-            //         width: widthDEfault,
-            //         height: 662,
-            //         duration: 1,
-            //     },
-            //     {
-            //         width: window.innerWidth,
-            //         height: window.innerHeight + 20,
-            //         duration: 1,
-            //         // onUpdate: () => {
-            //         //     if(tl.progress() >= 0.9 && tl.progress() < 1){
-            //         //         const promise = document.querySelector('.top__video').play();
-            //         //         console.log(promise)
-            //         //         if(promise !== undefined){
-            //         //             promise.then(() => {
-            //         //                 document.querySelector('.top__video').play()
-            //         //             }).catch(error => {
-            //         //                 console.log(error)
-            //         //                 // Autoplay was prevented.
-            //         //                 document.querySelector('.top__video').play();
-            //         //             });
-            //         //         }
-            //         //     }
-            //         //     else{
-            //         //         const promise = document.querySelector('.top__video').pause();
-            //         //         if(promise !== undefined){
-            //         //             promise.then(() => {
-            //         //                 document.querySelector('.top__video').pause()
-            //         //             }).catch(error => {
-            //         //                 // Autoplay was prevented.
-            //         //                 document.querySelector('.top__video').pause();
-            //         //             });
-            //         //         }
-            //         //     }
-            //         // },
+            tl.fromTo('.top__video ',
+                {
+                    width: widthDEfault,
+                    height: 662,
+                    duration: 1,
+                },
+                {
+                    width: window.innerWidth,
+                    height: window.innerHeight + 20,
+                    duration: 1,
+                    // onUpdate: () => {
+                    //     if(tl.progress() >= 0.9 && tl.progress() < 1){
+                    //         const promise = document.querySelector('.top__video').play();
+                    //         console.log(promise)
+                    //         if(promise !== undefined){
+                    //             promise.then(() => {
+                    //                 document.querySelector('.top__video').play()
+                    //             }).catch(error => {
+                    //                 console.log(error)
+                    //                 // Autoplay was prevented.
+                    //                 document.querySelector('.top__video').play();
+                    //             });
+                    //         }
+                    //     }
+                    //     else{
+                    //         const promise = document.querySelector('.top__video').pause();
+                    //         if(promise !== undefined){
+                    //             promise.then(() => {
+                    //                 document.querySelector('.top__video').pause()
+                    //             }).catch(error => {
+                    //                 // Autoplay was prevented.
+                    //                 document.querySelector('.top__video').pause();
+                    //             });
+                    //         }
+                    //     }
+                    // },
 
-            //     },
-            // )
+                },
+            )
             if (window.innerWidth > 1280) {
                 console.log(true)
                 const galleryWrapper = document.querySelector('.portfolio');
@@ -133,8 +121,8 @@ if (window.innerWidth > 992) {
                 });
             }
         }, 100)
-    // }
-    // animate()
+    }
+    animate()
 }
 
 

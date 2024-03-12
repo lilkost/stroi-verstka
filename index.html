@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"
         integrity="sha512-pLJlXRr/H5t+k+Tjc+Qe0Z6u6psPak7rvYBdsZ0Z+kG84jn/zifMNTQBZKZlwZC1z23bifGoQWzGnI0eWBJKPQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/imask"></script>
     <script src="../js/scroll.js" defer></script>
     <script src="../js/slider.js" defer></script>
     <script src="../js/index.js" defer type="module"></script>
@@ -38,7 +39,7 @@
                 </ul>
             </nav>
             <div class="header__links" data-da=".mobile-menu, 992, last">
-                <a class="header__link header__link_project" href="#!">ОБСУДИТЬ ПРОЕКТ</a>
+                <button id="openModal" class="header__link header__link_project">ОБСУДИТЬ ПРОЕКТ</button>
                 <div class="header__social">
                     <a href="tel:+ 79877459356" class="header__link header__link_phone">+ 7 987 745 93 56</a>
                     <div class="header__social-links">
@@ -267,93 +268,95 @@
           </div>
       </div>
       <div class="services__inner">
-          <div class="services-slider container">
-              <div class="swiper-wrapper">
-                  <div class="services-slider__slide swiper-slide">
-                      <div class="services-slider__slide-left">
-                          <strong class="services-slider__slide-title">
-                              Ремонт квартиры средней сложности
-                          </strong>
-                          <div class="services-slider__slide-box">
-                              <div class="services-slider__slide-price">
-                                  <span>от</span>
-                                  45 000 <mark>₽</mark>
+          <div class="services-slider-inner container">
+              <div class="services-slider">
+                  <div class="swiper-wrapper">
+                      <div class="services-slider__slide swiper-slide">
+                          <div class="services-slider__slide-left">
+                              <strong class="services-slider__slide-title">
+                                  Ремонт квартиры средней сложности
+                              </strong>
+                              <div class="services-slider__slide-box">
+                                  <div class="services-slider__slide-price">
+                                      <span>от</span>
+                                      45 000 <mark>₽</mark>
+                                  </div>
+                                  <a class="services-slider__slide-preview btn" href="#">ПОДАТЬ ЗАЯВКУ</a>
                               </div>
-                              <a class="services-slider__slide-preview btn" href="#">ПОДАТЬ ЗАЯВКУ</a>
+                          </div>
+                          <div class="services-slider__slide-right">
+                              <strong class="services-slider__slide-title">ПРИЗНАКИ:</strong>
+                              <ul>
+                                  <li>Минимальная перепланировка</li>
+                                  <li>Помещения правильной формы</li>
+                                  <li>Cтандартная отделка</li>
+                              </ul>
                           </div>
                       </div>
-                      <div class="services-slider__slide-right">
-                          <strong class="services-slider__slide-title">ПРИЗНАКИ:</strong>
-                          <ul>
-                              <li>Минимальная перепланировка</li>
-                              <li>Помещения правильной формы</li>
-                              <li>Cтандартная отделка</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="services-slider__slide swiper-slide">
-                      <div class="services-slider__slide-left">
-                          <strong class="services-slider__slide-title">
-                              Премиальная отделка
-                          </strong>
-                          <div class="services-slider__slide-box">
-                              <div class="services-slider__slide-price">
-                                  <span>от</span>
-                                  45 000 <mark>₽</mark>
+                      <div class="services-slider__slide swiper-slide">
+                          <div class="services-slider__slide-left">
+                              <strong class="services-slider__slide-title">
+                                  Премиальная отделка
+                              </strong>
+                              <div class="services-slider__slide-box">
+                                  <div class="services-slider__slide-price">
+                                      <span>от</span>
+                                      45 000 <mark>₽</mark>
+                                  </div>
+                                  <a class="services-slider__slide-preview btn" href="#">ПОДАТЬ ЗАЯВКУ</a>
                               </div>
-                              <a class="services-slider__slide-preview btn" href="#">ПОДАТЬ ЗАЯВКУ</a>
+                          </div>
+                          <div class="services-slider__slide-right">
+                              <strong class="services-slider__slide-title">ПРИЗНАКИ:</strong>
+                              <ul>
+                                  <li>Минимальная перепланировка</li>
+                                  <li>Помещения правильной формы</li>
+                                  <li>Cтандартная отделка</li>
+                              </ul>
                           </div>
                       </div>
-                      <div class="services-slider__slide-right">
-                          <strong class="services-slider__slide-title">ПРИЗНАКИ:</strong>
-                          <ul>
-                              <li>Минимальная перепланировка</li>
-                              <li>Помещения правильной формы</li>
-                              <li>Cтандартная отделка</li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="services-slider__slide swiper-slide">
-                      <div class="services-slider__slide-left">
-                          <strong class="services-slider__slide-title">
-                              Ремонт квартиры средней сложности
-                          </strong>
-                          <div class="services-slider__slide-box">
-                              <div class="services-slider__slide-price">
-                                  <span>от</span>
-                                  45 000 <mark>₽</mark>
+                      <div class="services-slider__slide swiper-slide">
+                          <div class="services-slider__slide-left">
+                              <strong class="services-slider__slide-title">
+                                  Ремонт квартиры средней сложности
+                              </strong>
+                              <div class="services-slider__slide-box">
+                                  <div class="services-slider__slide-price">
+                                      <span>от</span>
+                                      45 000 <mark>₽</mark>
+                                  </div>
+                                  <a class="services-slider__slide-preview btn" href="#">ПОДАТЬ ЗАЯВКУ</a>
                               </div>
-                              <a class="services-slider__slide-preview btn" href="#">ПОДАТЬ ЗАЯВКУ</a>
+                          </div>
+                          <div class="services-slider__slide-right">
+                              <strong class="services-slider__slide-title">ПРИЗНАКИ:</strong>
+                              <ul>
+                                  <li>Минимальная перепланировка</li>
+                                  <li>Помещения правильной формы</li>
+                                  <li>Cтандартная отделка</li>
+                              </ul>
                           </div>
                       </div>
-                      <div class="services-slider__slide-right">
-                          <strong class="services-slider__slide-title">ПРИЗНАКИ:</strong>
-                          <ul>
-                              <li>Минимальная перепланировка</li>
-                              <li>Помещения правильной формы</li>
-                              <li>Cтандартная отделка</li>
-                          </ul>
-                      </div>
                   </div>
-              </div>
-              <div class="services-slider__controll">
-                  <div class="services-slider__arrows">
-                      <div class="services-slider__button-prev link-arrow ">
-                          <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M0 5L7.5 0.669872L7.5 9.33013L0 5Z" fill="#E6E6E6" />
-                          </svg>
-                      </div>
-                      <div class="services-slider__button-next link-arrow ">
-                          <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <g clip-path="url(#clip0_669_2416)">
-                                  <path d="M8 4.99995L0.5 9.33008L0.499999 0.669821L8 4.99995Z" fill="#E6E6E6" />
-                              </g>
-                              <defs>
-                                  <clipPath id="clip0_669_2416">
-                                      <rect width="8" height="10" fill="white" transform="translate(8 10) rotate(180)" />
-                                  </clipPath>
-                              </defs>
-                          </svg>
+                  <div class="services-slider__controll">
+                      <div class="services-slider__arrows">
+                          <div class="services-slider__button-prev link-arrow ">
+                              <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M0 5L7.5 0.669872L7.5 9.33013L0 5Z" fill="#E6E6E6" />
+                              </svg>
+                          </div>
+                          <div class="services-slider__button-next link-arrow ">
+                              <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <g clip-path="url(#clip0_669_2416)">
+                                      <path d="M8 4.99995L0.5 9.33008L0.499999 0.669821L8 4.99995Z" fill="#E6E6E6" />
+                                  </g>
+                                  <defs>
+                                      <clipPath id="clip0_669_2416">
+                                          <rect width="8" height="10" fill="white" transform="translate(8 10) rotate(180)" />
+                                      </clipPath>
+                                  </defs>
+                              </svg>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -1002,7 +1005,7 @@
                         <a class="footer__item-link" href="">youtube</a>
                     </li>
                 </ul>
-                <a class="footer__link-policy"  href="#!">
+                <a class="footer__link-policy" href="#!">
                     Политика<br> конфиденциальности
                 </a>
             </div>
@@ -1019,6 +1022,33 @@
         </div>
     </div>
 </footer>
+
+<div class="modal-inner">
+    <div class="modal">
+        <div class="modal__top">
+            <h4 class="modal__title">Обсудить проект</h4>
+            <p class="modal__text">Введите свои данные ниже, и мы свяжемся с вами как можно скорее!</p>
+            <button class="modal__close" id="modalClose" type="button" title="скрыть окно">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.292787 1.29308C0.480314 1.10561 0.734622 1.00029 0.999786 1.00029C1.26495 1.00029 1.51926 1.10561 1.70679 1.29308L6.99979 6.58608L12.2928 1.29308C12.385 1.19757 12.4954 1.12139 12.6174 1.06898C12.7394 1.01657 12.8706 0.988985 13.0034 0.987831C13.1362 0.986677 13.2678 1.01198 13.3907 1.06226C13.5136 1.11254 13.6253 1.18679 13.7192 1.28069C13.8131 1.37458 13.8873 1.48623 13.9376 1.60913C13.9879 1.73202 14.0132 1.8637 14.012 1.99648C14.0109 2.12926 13.9833 2.26048 13.9309 2.38249C13.8785 2.50449 13.8023 2.61483 13.7068 2.70708L8.41379 8.00008L13.7068 13.2931C13.8889 13.4817 13.9897 13.7343 13.9875 13.9965C13.9852 14.2587 13.88 14.5095 13.6946 14.6949C13.5092 14.8803 13.2584 14.9855 12.9962 14.9878C12.734 14.99 12.4814 14.8892 12.2928 14.7071L6.99979 9.41408L1.70679 14.7071C1.51818 14.8892 1.26558 14.99 1.00339 14.9878C0.741188 14.9855 0.490376 14.8803 0.304968 14.6949C0.11956 14.5095 0.0143906 14.2587 0.0121121 13.9965C0.00983372 13.7343 0.110629 13.4817 0.292787 13.2931L5.58579 8.00008L0.292787 2.70708C0.105316 2.51955 0 2.26525 0 2.00008C0 1.73492 0.105316 1.48061 0.292787 1.29308Z"
+                        fill="black" />
+                </svg>
+            </button>
+        </div>
+        <form action="" class="modal__form">
+            <fieldset class="modal__fieldset">
+                <input class="modal__input" type="text" placeholder="имя">
+                <input id="phoneModal" class="modal__input" type="text" placeholder="номер телефона">
+            </fieldset>
+            <button class="modal__button btn" type="submit">ПОДАТЬ ЗАЯВКУ</button>
+        </form>
+        <p class="modal__text-info">
+            Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь
+            c <a href="" target="_blank">политикой конфиденциальности</a>.
+        </p>
+    </div>
+</div>
 </div>
 
 

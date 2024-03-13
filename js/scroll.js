@@ -7,32 +7,94 @@ if (window.innerWidth > 992) {
         videoTop.setAttribute('data-width', widthDEfault);
         videoTop.style.width = widthDEfault + 'px';
 
-        var expandingBlock = document.querySelector(".top__video");
 
-        // Устанавливаем начальные параметры анимации
-        gsap.set(expandingBlock, { width: widthDEfault });
-        gsap.set(expandingBlock, { top: 0 });
+        const bodyPage = document.querySelector('body');
+        const videoBlock = document.querySelector('.top__video')
+        let prPX = window.innerWidth - bodyPage.scrollWidth;
+        bodyPage.style.overflow = 'hidden'
+        const topBox = document.querySelector('.top__box');
+        bodyPage.style.paddingRight = prPX + 'px';
+        videoTop.style.right = prPX + 'px';
+        document.querySelector('.header').style.width = window.innerWidth - prPX + 'px';
+        // if (window.scrollY < 100) {
+        //     container.addEventListener("wheel", function (event) {
+        //         console.log(window.scrollY)
+        //         var scrollDirection = event.deltaY > 0 ? "Down" : "Up";
+        //         // console.log(event.deltaY)
+        //         // if (event.deltaY < 100) {
 
-        // Создаем анимацию с использованием ScrollTrigger
-        gsap.to(expandingBlock, {
-            width: window.innerWidth,
-            scrollTrigger: {
-                trigger: document.querySelector('.top'),
-                start: "top",
-                end: "top",
-                scrub: 1,
-                pin: '.top'
-                // "Стирать" анимацию в зависимости от скорости скролла
-            },
-        });
-        window.addEventListener('scroll', () => {
-            if (window.scrollY >= 100) {
-                document.querySelector('.top__video').style.top = '100px';
+        //         // }
+
+        //         if (event.deltaY >= 100) {
+        //             videoBlock.style.width = window.innerWidth + 'px';
+        //             topBox.style.opacity = 0;
+        //             setTimeout(() => {
+        //                 bodyPage.style.overflow = ''
+        //                 bodyPage.style.paddingRight = '';
+        //             }, 300)
+        //         }
+        //     });
+        // }
+        window.addEventListener('wheel', (event) => {
+            console.log(event.deltaY, window.scrollY)
+            if (window.scrollY < 80) {
+                // topBox.style.opacity = 1;
+                // bodyPage.style.overflow = 'hidden'
+                // bodyPage.style.paddingRight = prPX + 'px';
+                // videoBlock.style.width = widthDEfault + 'px';
+                // window.scrollTo(0, 0)
             }
-            else {
-                document.querySelector('.top__video').style.top = '0';
+            if (event.deltaY >= 0) {
+                videoBlock.style.width = window.innerWidth + 'px';
+                topBox.style.opacity = 0;
+
+                setTimeout(() => {
+                    bodyPage.style.overflow = ''
+                    bodyPage.style.paddingRight = '';
+                    videoTop.style.right = 0 + 'px';
+                    bodyPage.style.paddingRight = 0 + 'px';
+                    document.querySelector('.header').style.width = window.innerWidth + 'px';
+                }, 300)
+            }
+
+            if (event.deltaY < 0 && window.scrollY <= 100) {
+                topBox.style.opacity = 1;
+                bodyPage.style.overflow = 'hidden'
+                videoBlock.style.width = widthDEfault + 'px';
+                videoTop.style.right = prPX + 'px';
+                bodyPage.style.paddingRight = prPX + 'px';
+                document.querySelector('.header').style.width = window.innerWidth + 'px';
+                window.scrollTo(0, 0)
             }
         })
+
+
+        // var expandingBlock = document.querySelector(".top__video");
+
+        // // Устанавливаем начальные параметры анимации
+        // gsap.set(expandingBlock, { width: widthDEfault });
+        // gsap.set(expandingBlock, { top: 0 });
+
+        // // Создаем анимацию с использованием ScrollTrigger
+        // gsap.to(expandingBlock, {
+        //     width: window.innerWidth,
+        //     scrollTrigger: {
+        //         trigger: document.querySelector('.top'),
+        //         start: "top",
+        //         end: "top",
+        //         scrub: 1,
+        //         pin: '.top'
+        //         // "Стирать" анимацию в зависимости от скорости скролла
+        //     },
+        // });
+        // window.addEventListener('scroll', () => {
+        //     if (window.scrollY >= 100) {
+        //         document.querySelector('.top__video').style.top = '100px';
+        //     }
+        //     else {
+        //         document.querySelector('.top__video').style.top = '0';
+        //     }
+        // })
 
         // window.addEventListener('scroll', ()=> {
         //     if(window.scrollY > 50) {
@@ -172,14 +234,14 @@ window.addEventListener('scroll', () => {
     let header = document.querySelector('.header');
     const topBox = document.querySelector('.top__box');
 
-    if (window.innerWidth >= 992) {
-        if (window.scrollY > 50) {
-            topBox.style.opacity = 0;
-        }
-        else {
-            topBox.style.opacity = 1;
-        }
-    }
+    // if (window.innerWidth >= 992) {
+    //     if (window.scrollY > 50) {
+    //         topBox.style.opacity = 0;
+    //     }
+    //     else {
+    //         topBox.style.opacity = 1;
+    //     }
+    // }
 
 
     if ((bodyHeight - footerHeight - 200) <= window.scrollY) {

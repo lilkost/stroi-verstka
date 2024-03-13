@@ -1,138 +1,166 @@
 if (window.innerWidth > 992) {
     // function animate() {
-        setTimeout(() => {
-            const container = document.querySelector('.top');
-            const widthDEfault = (window.innerWidth - document.querySelector('.top__box').clientWidth) - (window.innerWidth - document.querySelector('.top__inner').clientWidth)
-            const videoTop = document.querySelector('.top__video');
-            videoTop.setAttribute('data-width', widthDEfault);
-            videoTop.style.width = widthDEfault + 'px';
-            window.addEventListener('scroll', ()=> {
-                if(window.scrollY > 50) {
-                    videoTop.style.width = window.innerWidth + 'px';
-                    videoTop.style.top = '200px'
-                }
-                else if(window.scrollY < 50){
-                    videoTop.style.width = widthDEfault + 'px';
-                    videoTop.style.top = '100px'
-                }
-            })
-            // let tl = gsap.timeline({
-            //     scrollTrigger: {
-            //         trigger: container,
-            //         start: "top top",
-            //         end: () => (window.innerHeight),
-            //         scrub: true,
-            //         pin: container,
-            //     }
-            // })
+    setTimeout(() => {
+        const container = document.querySelector('.top');
+        const widthDEfault = (window.innerWidth - document.querySelector('.top__box').clientWidth) - (window.innerWidth - document.querySelector('.top__inner').clientWidth)
+        const videoTop = document.querySelector('.top__video');
+        videoTop.setAttribute('data-width', widthDEfault);
+        videoTop.style.width = widthDEfault + 'px';
 
-            // tl.fromTo('.top__video ',
-            //     {
-            //         width: widthDEfault,
-            //         height: 662,
-            //         duration: 1,
-            //     },
-            //     {
-            //         width: window.innerWidth,
-            //         height: window.innerHeight + 20,
-            //         duration: 1,
-            //         // onUpdate: () => {
-            //         //     if(tl.progress() >= 0.9 && tl.progress() < 1){
-            //         //         const promise = document.querySelector('.top__video').play();
-            //         //         console.log(promise)
-            //         //         if(promise !== undefined){
-            //         //             promise.then(() => {
-            //         //                 document.querySelector('.top__video').play()
-            //         //             }).catch(error => {
-            //         //                 console.log(error)
-            //         //                 // Autoplay was prevented.
-            //         //                 document.querySelector('.top__video').play();
-            //         //             });
-            //         //         }
-            //         //     }
-            //         //     else{
-            //         //         const promise = document.querySelector('.top__video').pause();
-            //         //         if(promise !== undefined){
-            //         //             promise.then(() => {
-            //         //                 document.querySelector('.top__video').pause()
-            //         //             }).catch(error => {
-            //         //                 // Autoplay was prevented.
-            //         //                 document.querySelector('.top__video').pause();
-            //         //             });
-            //         //         }
-            //         //     }
-            //         // },
+        var expandingBlock = document.querySelector(".top__video");
 
-            //     },
-            // )
-            if (window.innerWidth > 1280) {
-                console.log(true)
-                const galleryWrapper = document.querySelector('.portfolio');
-                const gallery = document.querySelector('.portfolio__list .swiper-wrapper');
-                const galleryItems = document.querySelectorAll('.portfolio__item'); // Replace with your actual class for gallery items
-                const totalSlidesWidth = Array.from(galleryItems).reduce((acc, item) => acc + item.offsetWidth, 0);
-                const tli = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: galleryWrapper,
-                        start: '-=150',
-                        end: `+=${totalSlidesWidth}`,
-                        pin: true,
-                        scrub: 0.5,
-                        onUpdate: () => {
-                            // console.log(tli.progress())
+        // Устанавливаем начальные параметры анимации
+        gsap.set(expandingBlock, { width: widthDEfault });
+        gsap.set(expandingBlock, { top: 0 });
 
-                            // Get the position of the target element
-                            const targetElement = document.querySelector('.desc-pos'); // Replace with your actual target element
-                            const targetPosition = targetElement.getBoundingClientRect().left;
-
-                            // Add your logic to add a class to the target element and remove it from others
-                            galleryItems.forEach((item) => {
-
-                                // console.log(item.getBoundingClientRect().left, targetPosition, item)
-                                if (window.innerWidth > 1550) {
-                                    if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > 0) {
-                                        item.classList.add('active');
-                                    } else {
-                                        item.classList.remove('active');
-                                    }
-                                }
-                                else if (window.innerWidth < 1550 && window.innerWidth > 1440) {
-                                    if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -50) {
-                                        item.classList.add('active');
-                                    } else {
-                                        item.classList.remove('active');
-                                    }
-                                }
-                                else if (window.innerWidth < 1440 && window.innerWidth > 1380) {
-                                    if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -100) {
-                                        item.classList.add('active');
-                                    } else {
-                                        item.classList.remove('active');
-                                    }
-                                }
-                                else if (window.innerWidth < 1380 && window.innerWidth > 1280) {
-                                    if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -150) {
-                                        item.classList.add('active');
-                                    } else {
-                                        item.classList.remove('active');
-                                    }
-                                }
-                            });
-
-                            // if (tli.progress() < 0.06) {
-                            //     galleryItems.forEach((item) => {
-                            //         item.classList.remove('active');
-                            //         galleryItems[0].classList.add('active')
-                            //     })
-                            // }
-                        },
-                    },
-                });
-                tli.to(gallery, {
-                    x: `-${totalSlidesWidth - 500}`,
-                });
+        // Создаем анимацию с использованием ScrollTrigger
+        gsap.to(expandingBlock, {
+            width: window.innerWidth,
+            scrollTrigger: {
+                trigger: document.querySelector('.top'),
+                start: "top",
+                end: "top",
+                scrub: 1,
+                pin: '.top'
+                // "Стирать" анимацию в зависимости от скорости скролла
+            },
+        });
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= 100) {
+                document.querySelector('.top__video').style.top = '100px';
             }
-        }, 100)
+            else {
+                document.querySelector('.top__video').style.top = '0';
+            }
+        })
+
+        // window.addEventListener('scroll', ()=> {
+        //     if(window.scrollY > 50) {
+        //         videoTop.style.width = window.innerWidth + 'px';
+        //         videoTop.style.top = '200px'
+        //     }
+        //     else if(window.scrollY < 50){
+        //         videoTop.style.width = widthDEfault + 'px';
+        //         videoTop.style.top = '100px'
+        //     }
+        // })
+        // let tl = gsap.timeline({
+        //     scrollTrigger: {
+        //         trigger: container,
+        //         start: "top top",
+        //         end: () => (window.innerHeight),
+        //         scrub: true,
+        //         pin: container,
+        //     }
+        // })
+
+        // tl.fromTo('.top__video ',
+        //     {
+        //         width: widthDEfault,
+        //         height: 662,
+        //         duration: 1,
+        //     },
+        //     {
+        //         width: window.innerWidth,
+        //         height: window.innerHeight + 20,
+        //         duration: 1,
+        //         // onUpdate: () => {
+        //         //     if(tl.progress() >= 0.9 && tl.progress() < 1){
+        //         //         const promise = document.querySelector('.top__video').play();
+        //         //         console.log(promise)
+        //         //         if(promise !== undefined){
+        //         //             promise.then(() => {
+        //         //                 document.querySelector('.top__video').play()
+        //         //             }).catch(error => {
+        //         //                 console.log(error)
+        //         //                 // Autoplay was prevented.
+        //         //                 document.querySelector('.top__video').play();
+        //         //             });
+        //         //         }
+        //         //     }
+        //         //     else{
+        //         //         const promise = document.querySelector('.top__video').pause();
+        //         //         if(promise !== undefined){
+        //         //             promise.then(() => {
+        //         //                 document.querySelector('.top__video').pause()
+        //         //             }).catch(error => {
+        //         //                 // Autoplay was prevented.
+        //         //                 document.querySelector('.top__video').pause();
+        //         //             });
+        //         //         }
+        //         //     }
+        //         // },
+
+        //     },
+        // )
+        if (window.innerWidth > 1280) {
+            console.log(true)
+            const galleryWrapper = document.querySelector('.portfolio');
+            const gallery = document.querySelector('.portfolio__list .swiper-wrapper');
+            const galleryItems = document.querySelectorAll('.portfolio__item'); // Replace with your actual class for gallery items
+            const totalSlidesWidth = Array.from(galleryItems).reduce((acc, item) => acc + item.offsetWidth, 0);
+            const tli = gsap.timeline({
+                scrollTrigger: {
+                    trigger: galleryWrapper,
+                    start: '-=150',
+                    end: `+=${totalSlidesWidth}`,
+                    pin: true,
+                    scrub: 0.5,
+                    onUpdate: () => {
+                        // console.log(tli.progress())
+
+                        // Get the position of the target element
+                        const targetElement = document.querySelector('.desc-pos'); // Replace with your actual target element
+                        const targetPosition = targetElement.getBoundingClientRect().left;
+
+                        // Add your logic to add a class to the target element and remove it from others
+                        galleryItems.forEach((item) => {
+
+                            // console.log(item.getBoundingClientRect().left, targetPosition, item)
+                            if (window.innerWidth > 1550) {
+                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > 0) {
+                                    item.classList.add('active');
+                                } else {
+                                    item.classList.remove('active');
+                                }
+                            }
+                            else if (window.innerWidth < 1550 && window.innerWidth > 1440) {
+                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -50) {
+                                    item.classList.add('active');
+                                } else {
+                                    item.classList.remove('active');
+                                }
+                            }
+                            else if (window.innerWidth < 1440 && window.innerWidth > 1380) {
+                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -100) {
+                                    item.classList.add('active');
+                                } else {
+                                    item.classList.remove('active');
+                                }
+                            }
+                            else if (window.innerWidth < 1380 && window.innerWidth > 1280) {
+                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -150) {
+                                    item.classList.add('active');
+                                } else {
+                                    item.classList.remove('active');
+                                }
+                            }
+                        });
+
+                        // if (tli.progress() < 0.06) {
+                        //     galleryItems.forEach((item) => {
+                        //         item.classList.remove('active');
+                        //         galleryItems[0].classList.add('active')
+                        //     })
+                        // }
+                    },
+                },
+            });
+            tli.to(gallery, {
+                x: `-${totalSlidesWidth - 500}`,
+            });
+        }
+    }, 100)
     // }
     // animate()
 }

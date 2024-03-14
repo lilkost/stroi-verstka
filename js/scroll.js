@@ -73,6 +73,8 @@ if (window.innerWidth > 992) {
             bodyPage.style.paddingRight = '';
             videoTop.style.right = 0 + 'px';
             bodyPage.style.paddingRight = 0 + 'px';
+            videoBlock.style.width = window.innerWidth + 'px';
+            topBox.style.opacity = 0;
             document.querySelector('.header').style.width = window.innerWidth + 'px';
         }
 

@@ -138,3 +138,57 @@ if (document.querySelector('.modal')) {
     };
     const mask = IMask(phone, maskOptions);
 }
+
+if (document.querySelector('.modal-price')) {
+    const modal = document.querySelector('.modal-price');
+    const modalInner = document.querySelector('.modal-price-inner');
+    const btnOpen = document.getElementById('btnPriceOpen');
+    const btnClose = document.getElementById('modalPriceClose');
+
+    function toggleClass(state) {
+        if (state === 'active') {
+            modalInner.classList.add('open');
+            setTimeout(() => {
+                modal.style.top = 0;
+                modal.style.transform = 'scale(1)';
+            }, 100)
+
+            setTimeout(() => {
+                modal.style.opacity = 1;
+            }, 150)
+        }
+
+        if (state === 'remove') {
+            setTimeout(() => {
+                modal.style.top = '50px';
+                modal.style.transform = 'scale(0.9)';
+            }, 100)
+            setTimeout(() => {
+                modal.style.opacity = 0;
+            }, 150)
+            setTimeout(() => {
+                modalInner.classList.remove('open');
+            }, 300)
+        }
+    }
+
+    btnOpen.addEventListener('click', () => {
+        toggleClass('active');
+    });
+
+    btnClose.addEventListener('click', () => {
+        toggleClass('remove');
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modalInner) {
+            toggleClass('remove');
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            toggleClass('remove');
+        }
+    });
+}

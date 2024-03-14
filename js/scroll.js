@@ -36,7 +36,7 @@ if (window.innerWidth > 992) {
         //     });
         // }
         window.addEventListener('wheel', (event) => {
-            console.log(event.deltaY, window.scrollY)
+            // console.log(event.deltaY, window.scrollY)
             if (window.scrollY < 80) {
                 // topBox.style.opacity = 1;
                 // bodyPage.style.overflow = 'hidden'
@@ -54,7 +54,7 @@ if (window.innerWidth > 992) {
                     videoTop.style.right = 0 + 'px';
                     bodyPage.style.paddingRight = 0 + 'px';
                     document.querySelector('.header').style.width = window.innerWidth + 'px';
-                }, 300)
+                }, 600);
             }
 
             if (event.deltaY < 0 && window.scrollY <= 100) {
@@ -64,9 +64,17 @@ if (window.innerWidth > 992) {
                 videoTop.style.right = prPX + 'px';
                 bodyPage.style.paddingRight = prPX + 'px';
                 document.querySelector('.header').style.width = window.innerWidth + 'px';
-                window.scrollTo(0, 0)
+                window.scrollTo(0, 0);
             }
         })
+
+        if (window.scrollY > 100) {
+            bodyPage.style.overflow = ''
+            bodyPage.style.paddingRight = '';
+            videoTop.style.right = 0 + 'px';
+            bodyPage.style.paddingRight = 0 + 'px';
+            document.querySelector('.header').style.width = window.innerWidth + 'px';
+        }
 
 
         // var expandingBlock = document.querySelector(".top__video");
@@ -168,46 +176,82 @@ if (window.innerWidth > 992) {
                     end: `+=${totalSlidesWidth}`,
                     pin: true,
                     scrub: 0.5,
-                    onUpdate: () => {
+                    onUpdate: (event) => {
                         // console.log(tli.progress())
+                        let pr = tli.progress();
+                        // console.log(pr, event);
+
+                        if (pr < 0.3) {
+                            galleryItems[0].style.order = '1';
+                            galleryItems[0].classList.add('active');
+
+                            galleryItems[1].style.order = '2';
+                            galleryItems[1].classList.remove('active');
+
+                            galleryItems[2].style.order = '3';
+                            galleryItems[2].classList.remove('active');
+                        }
+
+                        if (pr > 0.3 && pr < 0.6) {
+                            galleryItems[0].style.order = '3';
+                            galleryItems[0].classList.remove('active');
+
+                            galleryItems[1].style.order = '1';
+                            galleryItems[1].classList.add('active');
+
+                            galleryItems[2].style.order = '2';
+                            galleryItems[2].classList.remove('active');
+                        }
+
+                        if (pr > 0.6) {
+                            galleryItems[0].style.order = '2';
+                            galleryItems[0].classList.remove('active');
+
+                            galleryItems[1].style.order = '3';
+                            galleryItems[1].classList.remove('active');
+
+                            galleryItems[2].style.order = '1';
+                            galleryItems[2].classList.add('active');
+                        }
+
 
                         // Get the position of the target element
-                        const targetElement = document.querySelector('.desc-pos'); // Replace with your actual target element
-                        const targetPosition = targetElement.getBoundingClientRect().left;
+                        // const targetElement = document.querySelector('.desc-pos'); // Replace with your actual target element
+                        // const targetPosition = targetElement.getBoundingClientRect().left;
 
                         // Add your logic to add a class to the target element and remove it from others
-                        galleryItems.forEach((item) => {
+                        // galleryItems.forEach((item) => {
 
-                            // console.log(item.getBoundingClientRect().left, targetPosition, item)
-                            if (window.innerWidth > 1550) {
-                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > 0) {
-                                    item.classList.add('active');
-                                } else {
-                                    item.classList.remove('active');
-                                }
-                            }
-                            else if (window.innerWidth < 1550 && window.innerWidth > 1440) {
-                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -50) {
-                                    item.classList.add('active');
-                                } else {
-                                    item.classList.remove('active');
-                                }
-                            }
-                            else if (window.innerWidth < 1440 && window.innerWidth > 1380) {
-                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -100) {
-                                    item.classList.add('active');
-                                } else {
-                                    item.classList.remove('active');
-                                }
-                            }
-                            else if (window.innerWidth < 1380 && window.innerWidth > 1280) {
-                                if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -150) {
-                                    item.classList.add('active');
-                                } else {
-                                    item.classList.remove('active');
-                                }
-                            }
-                        });
+                        //     // console.log(item.getBoundingClientRect().left, targetPosition, item)
+                        //     if (window.innerWidth > 1550) {
+                        //         if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > 0) {
+                        //             item.classList.add('active');
+                        //         } else {
+                        //             item.classList.remove('active');
+                        //         }
+                        //     }
+                        //     else if (window.innerWidth < 1550 && window.innerWidth > 1440) {
+                        //         if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -50) {
+                        //             item.classList.add('active');
+                        //         } else {
+                        //             item.classList.remove('active');
+                        //         }
+                        //     }
+                        //     else if (window.innerWidth < 1440 && window.innerWidth > 1380) {
+                        //         if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -100) {
+                        //             item.classList.add('active');
+                        //         } else {
+                        //             item.classList.remove('active');
+                        //         }
+                        //     }
+                        //     else if (window.innerWidth < 1380 && window.innerWidth > 1280) {
+                        //         if (item.getBoundingClientRect().left <= targetPosition && item.getBoundingClientRect().left > -150) {
+                        //             item.classList.add('active');
+                        //         } else {
+                        //             item.classList.remove('active');
+                        //         }
+                        //     }
+                        // });
 
                         // if (tli.progress() < 0.06) {
                         //     galleryItems.forEach((item) => {
@@ -215,11 +259,13 @@ if (window.innerWidth > 992) {
                         //         galleryItems[0].classList.add('active')
                         //     })
                         // }
+
+
                     },
                 },
             });
             tli.to(gallery, {
-                x: `-${totalSlidesWidth - 500}`,
+                // x: `-${totalSlidesWidth - 250}`,
             });
         }
     }, 100)

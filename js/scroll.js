@@ -16,25 +16,7 @@ if (window.innerWidth > 992) {
         bodyPage.style.paddingRight = prPX + 'px';
         videoTop.style.right = prPX + 'px';
         document.querySelector('.header').style.width = window.innerWidth - prPX + 'px';
-        // if (window.scrollY < 100) {
-        //     container.addEventListener("wheel", function (event) {
-        //         console.log(window.scrollY)
-        //         var scrollDirection = event.deltaY > 0 ? "Down" : "Up";
-        //         // console.log(event.deltaY)
-        //         // if (event.deltaY < 100) {
 
-        //         // }
-
-        //         if (event.deltaY >= 100) {
-        //             videoBlock.style.width = window.innerWidth + 'px';
-        //             topBox.style.opacity = 0;
-        //             setTimeout(() => {
-        //                 bodyPage.style.overflow = ''
-        //                 bodyPage.style.paddingRight = '';
-        //             }, 300)
-        //         }
-        //     });
-        // }
         window.addEventListener('wheel', (event) => {
             // console.log(event.deltaY, window.scrollY)
             if (window.scrollY < 80) {
@@ -174,7 +156,7 @@ if (window.innerWidth > 992) {
             const tli = gsap.timeline({
                 scrollTrigger: {
                     trigger: galleryWrapper,
-                    start: '-=150',
+                    start: '-=100',
                     end: `+=${totalSlidesWidth}`,
                     pin: true,
                     scrub: 0.5,

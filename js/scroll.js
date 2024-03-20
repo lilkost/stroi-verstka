@@ -2,7 +2,7 @@ if (window.innerWidth > 992) {
     // function animate() {
     setTimeout(() => {
         const container = document.querySelector('.top');
-        const widthDEfault = (window.innerWidth - document.querySelector('.top__box').clientWidth) - (window.innerWidth - document.querySelector('.top__inner').clientWidth)
+        const widthDEfault = (window.innerWidth - document.querySelector('.top__box').clientWidth) - (window.innerWidth - document.querySelector('.top__inner').clientWidth) - 2
         const videoTop = document.querySelector('.top__video');
         videoTop.setAttribute('data-width', widthDEfault);
         videoTop.style.width = widthDEfault + 'px';
@@ -14,26 +14,20 @@ if (window.innerWidth > 992) {
         bodyPage.style.overflow = 'hidden'
         const topBox = document.querySelector('.top__box');
         bodyPage.style.paddingRight = prPX + 'px';
-        videoTop.style.right = prPX + 'px';
+        // videoTop.style.right = prPX + 'px';
         document.querySelector('.header').style.width = window.innerWidth - prPX + 'px';
-
+        console.log(prPX)
         window.addEventListener('wheel', (event) => {
-            // console.log(event.deltaY, window.scrollY)
-            if (window.scrollY < 80) {
-                // topBox.style.opacity = 1;
-                // bodyPage.style.overflow = 'hidden'
-                // bodyPage.style.paddingRight = prPX + 'px';
-                // videoBlock.style.width = widthDEfault + 'px';
-                // window.scrollTo(0, 0)
-            }
             if (event.deltaY >= 0) {
                 videoBlock.style.width = window.innerWidth + 'px';
                 topBox.style.opacity = 0;
-
+                document.querySelector('.main').style.zIndex = '13'
+                document.querySelector('.main').style.overflow = 'hidden'
+                document.querySelector('.wrapper').style.overflow = 'auto'
                 setTimeout(() => {
                     bodyPage.style.overflow = ''
                     bodyPage.style.paddingRight = '';
-                    videoTop.style.right = 0 + 'px';
+                    // videoTop.style.right = 0 + 'px';
                     bodyPage.style.paddingRight = 0 + 'px';
                     document.querySelector('.header').style.width = window.innerWidth + 'px';
                 }, 600);
@@ -42,111 +36,35 @@ if (window.innerWidth > 992) {
             if (event.deltaY < 0 && window.scrollY <= 100) {
                 topBox.style.opacity = 1;
                 bodyPage.style.overflow = 'hidden'
-                videoBlock.style.width = widthDEfault + 'px';
-                videoTop.style.right = prPX + 'px';
+                videoBlock.style.width = widthDEfault - 10 + 'px';
+                // videoTop.style.right = prPX + 'px';
                 bodyPage.style.paddingRight = prPX + 'px';
                 document.querySelector('.header').style.width = window.innerWidth + 'px';
                 window.scrollTo(0, 0);
+                document.querySelector('.main').style.zIndex = '15'
+                document.querySelector('.wrapper').style.overflow = 'hidden'
+                document.querySelector('.main').style.overflow = 'unset'
+            }
+
+            if(window.scrollY > 150) {
+                document.querySelector('.header').style.zIndex = 16
+            }
+            else {
+                document.querySelector('.header').style.zIndex = 13
             }
         })
 
         if (window.scrollY > 100) {
             bodyPage.style.overflow = ''
             bodyPage.style.paddingRight = '';
-            videoTop.style.right = 0 + 'px';
+            // videoTop.style.right = 0 + 'px';
             bodyPage.style.paddingRight = 0 + 'px';
             videoBlock.style.width = window.innerWidth + 'px';
             topBox.style.opacity = 0;
             document.querySelector('.header').style.width = window.innerWidth + 'px';
+            document.querySelector('.header').style.zIndex = 16
         }
 
-
-        // var expandingBlock = document.querySelector(".top__video");
-
-        // // Устанавливаем начальные параметры анимации
-        // gsap.set(expandingBlock, { width: widthDEfault });
-        // gsap.set(expandingBlock, { top: 0 });
-
-        // // Создаем анимацию с использованием ScrollTrigger
-        // gsap.to(expandingBlock, {
-        //     width: window.innerWidth,
-        //     scrollTrigger: {
-        //         trigger: document.querySelector('.top'),
-        //         start: "top",
-        //         end: "top",
-        //         scrub: 1,
-        //         pin: '.top'
-        //         // "Стирать" анимацию в зависимости от скорости скролла
-        //     },
-        // });
-        // window.addEventListener('scroll', () => {
-        //     if (window.scrollY >= 100) {
-        //         document.querySelector('.top__video').style.top = '100px';
-        //     }
-        //     else {
-        //         document.querySelector('.top__video').style.top = '0';
-        //     }
-        // })
-
-        // window.addEventListener('scroll', ()=> {
-        //     if(window.scrollY > 50) {
-        //         videoTop.style.width = window.innerWidth + 'px';
-        //         videoTop.style.top = '200px'
-        //     }
-        //     else if(window.scrollY < 50){
-        //         videoTop.style.width = widthDEfault + 'px';
-        //         videoTop.style.top = '100px'
-        //     }
-        // })
-        // let tl = gsap.timeline({
-        //     scrollTrigger: {
-        //         trigger: container,
-        //         start: "top top",
-        //         end: () => (window.innerHeight),
-        //         scrub: true,
-        //         pin: container,
-        //     }
-        // })
-
-        // tl.fromTo('.top__video ',
-        //     {
-        //         width: widthDEfault,
-        //         height: 662,
-        //         duration: 1,
-        //     },
-        //     {
-        //         width: window.innerWidth,
-        //         height: window.innerHeight + 20,
-        //         duration: 1,
-        //         // onUpdate: () => {
-        //         //     if(tl.progress() >= 0.9 && tl.progress() < 1){
-        //         //         const promise = document.querySelector('.top__video').play();
-        //         //         console.log(promise)
-        //         //         if(promise !== undefined){
-        //         //             promise.then(() => {
-        //         //                 document.querySelector('.top__video').play()
-        //         //             }).catch(error => {
-        //         //                 console.log(error)
-        //         //                 // Autoplay was prevented.
-        //         //                 document.querySelector('.top__video').play();
-        //         //             });
-        //         //         }
-        //         //     }
-        //         //     else{
-        //         //         const promise = document.querySelector('.top__video').pause();
-        //         //         if(promise !== undefined){
-        //         //             promise.then(() => {
-        //         //                 document.querySelector('.top__video').pause()
-        //         //             }).catch(error => {
-        //         //                 // Autoplay was prevented.
-        //         //                 document.querySelector('.top__video').pause();
-        //         //             });
-        //         //         }
-        //         //     }
-        //         // },
-
-        //     },
-        // )
         if (window.innerWidth > 1280) {
             console.log(true)
             const galleryWrapper = document.querySelector('.portfolio');

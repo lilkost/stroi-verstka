@@ -139,7 +139,7 @@ if (document.querySelector('.modal')) {
     const mask = IMask(phone, maskOptions);
 }
 
-if (document.querySelector('.modal-price')) {
+if (document.querySelector('.modal-price') && document.getElementById('btnPriceOpen')) {
     const modal = document.querySelector('.modal-price');
     const modalInner = document.querySelector('.modal-price-inner');
     const btnOpen = document.getElementById('btnPriceOpen');

@@ -54,7 +54,7 @@ if (window.innerWidth > 992) {
             }
         })
 
-        if (window.scrollY > 100) {
+        if (window.scrollY > 0) {
             bodyPage.style.overflow = ''
             bodyPage.style.paddingRight = '';
             // videoTop.style.right = 0 + 'px';
@@ -62,7 +62,7 @@ if (window.innerWidth > 992) {
             videoBlock.style.width = window.innerWidth + 'px';
             topBox.style.opacity = 0;
             document.querySelector('.header').style.width = window.innerWidth + 'px';
-            document.querySelector('.header').style.zIndex = 16
+            document.querySelector('.header').style.zIndex = 16;
         }
 
         if (window.innerWidth > 1280) {
@@ -202,7 +202,7 @@ window.addEventListener('scroll', () => {
     if (window.scrollY > 2000) {
         header.style.zIndex = '21'
     } else {
-        header.style.zIndex = '14'
+        header.style.zIndex = '16'
     }
 })
 

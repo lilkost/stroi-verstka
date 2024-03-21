@@ -6146,16 +6146,12 @@ html {
     margin-bottom: 22px;
     max-width: 327px;
     height: 275px;
-    margin-right: 60px
-}
-
-.portfolio__item.active .portfolio__item-picture {
-    -webkit-transition: width 320ms linear, height 320ms linear;
-    transition: width 320ms linear, height 320ms linear;
+    margin-right: 60px;
+    -webkit-transition: width 350ms linear, height 350ms linear;
+    transition: width 350ms linear, height 350ms linear;
     transition-property: all;
     transition-behavior: allow-discrete;
 }
-
 .portfolio__item-picture img {
     object-fit: cover;
     width: 100%;

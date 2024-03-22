@@ -1,3 +1,59 @@
+let sliderList = document.querySelector('.portfolio__list');
+const swiperPor = new Swiper(sliderList, {
+    // Optional parameters
+    direction: 'horizontal',
+    slidesPerView: 'auto',
+    spaceBetween: 60,
+    allowTouchMove: false,
+    navigation: {
+        nextEl: '.portfolio-list__button-next',
+        prevEl: '.portfolio-list__button-prev',
+    },
+    breakpoints: {
+        1281: {
+            slidesPerView: 'auto',
+            loop: false,
+            allowTouchMove: false,
+            spaceBetween: 60,
+        },
+        993: {
+            slidesPerView: 3,
+            loop: true,
+            allowTouchMove: true,
+            spaceBetween: 60
+        },
+        992: {
+            slidesPerView: 2.3,
+            loop: true,
+            allowTouchMove: true,
+            spaceBetween: 20
+        },
+        769: {
+            slidesPerView: 2.3,
+            loop: true,
+            allowTouchMove: true,
+            spaceBetween: 20
+        },
+        768: {
+            slidesPerView: 2,
+            loop: true,
+            allowTouchMove: true,
+            spaceBetween: 20
+        },
+        569: {
+            slidesPerView: 2,
+            loop: true,
+            allowTouchMove: true,
+            spaceBetween: 20
+        },
+        280: {
+            slidesPerView: 1,
+            loop: true,
+            allowTouchMove: true,
+            spaceBetween: 20
+        },
+    }
+});
 if (window.innerWidth > 992) {
     // function animate() {
     setTimeout(() => {
@@ -6,7 +62,6 @@ if (window.innerWidth > 992) {
         const videoTop = document.querySelector('.top__video');
         videoTop.setAttribute('data-width', widthDEfault);
         videoTop.style.width = widthDEfault + 'px';
-
 
         const bodyPage = document.querySelector('body');
         const videoBlock = document.querySelector('.top__video')
@@ -46,7 +101,7 @@ if (window.innerWidth > 992) {
                 document.querySelector('.main').style.overflow = 'unset'
             }
 
-            if(window.scrollY > 150) {
+            if (window.scrollY > 0) {
                 document.querySelector('.header').style.zIndex = 16
             }
             else {
@@ -66,7 +121,6 @@ if (window.innerWidth > 992) {
         }
 
         if (window.innerWidth > 1280) {
-            console.log(true)
             const galleryWrapper = document.querySelector('.portfolio');
             const gallery = document.querySelector('.portfolio__list .swiper-wrapper');
             const galleryItems = document.querySelectorAll('.portfolio__item'); // Replace with your actual class for gallery items
@@ -82,38 +136,41 @@ if (window.innerWidth > 992) {
                         // console.log(tli.progress())
                         let pr = tli.progress();
                         // console.log(pr, event);
-
+                        console.log(tli.progress())
                         if (pr < 0.3) {
-                            galleryItems[0].style.order = '1';
-                            galleryItems[0].classList.add('active');
+                            // galleryItems[0].style.order = '1';
+                            // galleryItems[0].classList.add('active');
 
-                            galleryItems[1].style.order = '2';
-                            galleryItems[1].classList.remove('active');
+                            // galleryItems[1].style.order = '2';
+                            // galleryItems[1].classList.remove('active');
 
-                            galleryItems[2].style.order = '3';
-                            galleryItems[2].classList.remove('active');
+                            // galleryItems[2].style.order = '3';
+                            // galleryItems[2].classList.remove('active');
+                            swiperPor.slideTo(0);
                         }
 
                         if (pr > 0.3 && pr < 0.6) {
-                            galleryItems[0].style.order = '3';
-                            galleryItems[0].classList.remove('active');
+                            // galleryItems[0].style.order = '3';
+                            // galleryItems[0].classList.remove('active');
 
-                            galleryItems[1].style.order = '1';
-                            galleryItems[1].classList.add('active');
+                            // galleryItems[1].style.order = '1';
+                            // galleryItems[1].classList.add('active');
 
-                            galleryItems[2].style.order = '2';
-                            galleryItems[2].classList.remove('active');
+                            // galleryItems[2].style.order = '2';
+                            // galleryItems[2].classList.remove('active');
+                            swiperPor.slideTo(1);
                         }
 
                         if (pr > 0.6) {
-                            galleryItems[0].style.order = '2';
-                            galleryItems[0].classList.remove('active');
+                            // galleryItems[0].style.order = '2';
+                            // galleryItems[0].classList.remove('active');
 
-                            galleryItems[1].style.order = '3';
-                            galleryItems[1].classList.remove('active');
+                            // galleryItems[1].style.order = '3';
+                            // galleryItems[1].classList.remove('active');
 
-                            galleryItems[2].style.order = '1';
-                            galleryItems[2].classList.add('active');
+                            // galleryItems[2].style.order = '1';
+                            // galleryItems[2].classList.add('active');
+                            swiperPor.slideTo(2);
                         }
 
 
@@ -174,7 +231,17 @@ if (window.innerWidth > 992) {
     // }
     // animate()
 }
+if (window.innerWidth <= 1280) {
+    const items = document.querySelectorAll('.portfolio__item');
+    items.forEach(item => {
+        item.classList.remove('w-desktop')
+    });
+}
 
+
+if (window.scrollY > 0) {
+    document.querySelector('.main').style.overflow = 'auto'
+}
 
 window.addEventListener('scroll', () => {
     let bodyHeight = document.querySelector('body').scrollHeight;
@@ -205,61 +272,5 @@ window.addEventListener('scroll', () => {
         header.style.zIndex = '16'
     }
 })
+// 123
 
-if (window.innerWidth <= 1280) {
-    const sliderList = document.querySelector('.portfolio__list');
-    const slides = document.querySelectorAll('.portfolio__item');
-
-    slides.forEach(sl => {
-        sl.classList.remove('active')
-        sl.classList.add('swiper-slide')
-    })
-
-
-    const swiper = new Swiper(sliderList, {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: true,
-        slidesPerView: 3,
-        spaceBetween: 30,
-        // If we need pagination
-        // pagination: {
-        //     el: '.portfolio__list-pagination',
-        //     type: 'fraction'
-        // },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.portfolio-list__button-next',
-            prevEl: '.portfolio-list__button-prev',
-        },
-
-        breakpoints: {
-            // when window width is >= 320px
-            993: {
-                slidesPerView: 3,
-                spaceBetween: 20
-            },
-            992: {
-                slidesPerView: 2.3,
-                spaceBetween: 20
-            },
-            769: {
-                slidesPerView: 2.3,
-                spaceBetween: 20
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 20
-            },
-            569: {
-                slidesPerView: 2,
-                spaceBetween: 20
-            },
-            280: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-        }
-    });
-}

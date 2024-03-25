@@ -902,7 +902,7 @@
         display: -ms-flexbox;
         display: flex;
         position: absolute;
-        bottom: 60px;
+        bottom: 30px;
         left: 50%;
         -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
@@ -1438,6 +1438,13 @@
 
     .logo {
         max-width: 85px
+    }
+
+    .logo img {
+        max-width: 99%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
     }
 
     .main {

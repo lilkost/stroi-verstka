@@ -902,7 +902,7 @@
         display: -ms-flexbox;
         display: flex;
         position: absolute;
-        bottom: 30px;
+        bottom: 60px;
         left: 50%;
         -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
@@ -1117,6 +1117,10 @@
 
     .project-page__video-title {
         line-height: 120%
+    }
+
+    .top {
+        min-height: auto;
     }
 }
 

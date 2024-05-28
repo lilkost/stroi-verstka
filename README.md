@@ -4,7 +4,7 @@
 ```
 Главная
 ```
-- [ ] [Главная](https://lilkost.github.io/stroi-verstka/) :+1:
+- [ * ] [Главная](https://lilkost.github.io/stroi-verstka/) :+1:
 ```
 Блог
 ```
